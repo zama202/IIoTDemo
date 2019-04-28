@@ -1,0 +1,36 @@
+﻿WITH LoadingQuery AS (
+  SELECT 
+    DataElement.ArrayValue.datetime as dd,
+    DataElement.ArrayValue.name as k,
+    DataElement.ArrayValue.value as v,
+    Evt.DeviceId as pk
+  FROM 
+    IOTHUB Evt
+  TIMESTAMP BY 
+    Evt.Datetime
+  CROSS APPLY GetArrayElements(Evt.Data) AS DataElement
+)
+
+
+SELECT 
+    System.Timestamp  AS InsertDate,
+    dateadd(millisecond, UDF.TimeStampMean(max(try_cast(LoadingQuery.dd AS Datetime )), min(try_cast(LoadingQuery.dd AS Datetime ))), min(try_cast(LoadingQuery.dd AS Datetime ))) AS TimeStamp,
+    LoadingQuery.k       AS VariableName,
+    avg(LoadingQuery.v)  AS Value,
+    LoadingQuery.pk AS src
+    
+/*    Reg.MachineName                 AS MachineName,
+    Reg.PlantName                   AS PlantName,
+    Reg.Description                 AS Description,
+    Reg.Latitude                    AS Latitude,
+    Reg.Longitude                   AS Longitude*/
+
+INTO 
+    EVENTHUB
+FROM    
+    LoadingQuery 
+
+/*JOIN c02962vhd001EnrichData Reg 
+ON LoadingQuery.ArrayValue.k = Reg.SensorName */
+GROUP BY
+    Tumblingwindow(second,3),LoadingQuery.k, LoadingQuery.pk/*,Reg.MachineName,Reg.PlantName,Reg.Description,Reg.Latitude,Reg.Longitude*/

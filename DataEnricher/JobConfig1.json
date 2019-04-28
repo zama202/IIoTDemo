@@ -1,0 +1,19 @@
+﻿{
+  "DataLocale": "en-US",
+  "OutputErrorPolicy": "Drop",
+  "EventsLateArrivalMaxDelayInSeconds": 5,
+  "EventsOutOfOrderMaxDelayInSeconds": 0,
+  "EventsOutOfOrderPolicy": "Adjust",
+  "StreamingUnits": 3,
+  "CompatibilityLevel": "1.0",
+  "UseSystemAssignedIdentity": false,
+  "GlobalStorageAccountName": null,
+  "GlobalStorageAccountKey": null,
+  "AccountName": null,
+  "AccountKey": null,
+  "ContainerName": null,
+  "Path": "UserCustomCode.zip",
+  "UploadFromLocal": true,
+  "DataSourceCredentialDomain": null,
+  "ScriptType": "JobConfig"
+}

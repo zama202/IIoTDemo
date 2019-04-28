@@ -1,0 +1,31 @@
+﻿{
+  "EventHubProperties": {
+    "EventHubName": "gab2019mi-ehs-099-ingest",
+    "PartitionKey": null,
+    "ServiceBusNamespace": "gab2019mi-ehn-001",
+    "SharedAccessPolicyKey": null,
+    "SharedAccessPolicyName": "RootManageSharedAccessKey"
+  },
+  "BlobStorageProperties": null,
+  "SQLDatabaseProperties": null,
+  "TableStorageProperties": null,
+  "ServiceBusQueueProperties": null,
+  "ServiceBusTopicProperties": null,
+  "DocumentDbProperties": null,
+  "PowellBIProperties": null,
+  "AzureDataLakeStoreProperties": null,
+  "AzureFunctionProperties": null,
+  "DataSourceCredentialDomain": "43645aa0-b53c-448c-9b83-614080fef75c.StreamAnalyticsCredential",
+  "Name": "EVENTHUB",
+  "DataSourceType": "Event Hub",
+  "Serialization": {
+    "Encoding": "UTF8",
+    "Type": "Json",
+    "FieldDelimiter": null,
+    "Format": "LineSeparated",
+    "SerializationDllPath": null,
+    "SerializationClassName": null,
+    "SerializationDllPathInLocal": null
+  },
+  "ScriptType": "Output"
+}

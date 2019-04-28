@@ -1,0 +1,44 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>9375712e-9ffe-4e19-b3b3-e59ad9284698</ProjectGuid>
+    <OutputType>File</OutputType>
+    <AssemblyName>DataEnricher</AssemblyName>
+    <ASATargetsFilePath>$(AppData)\Microsoft\DataLake\MsBuild\1.0\StreamAnalytics.targets</ASATargetsFilePath>
+    <Name>DataEnricher</Name>
+    <RootNamespace>DataEnricher</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Script Include="Script1.asaql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Configure Include="Input1.json">
+      <SubType>Input</SubType>
+    </Configure>
+    <Configure Include="JobConfig1.json">
+      <SubType>JobConfig</SubType>
+    </Configure>
+    <Configure Include="TimestampMean.js.json">
+      <SubType>JSFunctionConfig</SubType>
+      <DependentUpon>TimestampMean.js</DependentUpon>
+    </Configure>
+    <Configure Include="Output1.json">
+      <SubType>Output</SubType>
+    </Configure>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TimestampMean.js">
+      <SubType>JSFunctionCode</SubType>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(ASATargetsFilePath)" />
+</Project>
